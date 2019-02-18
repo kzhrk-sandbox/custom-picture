@@ -1,0 +1,38 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "npm run pug:dev & npm run postcss:dev & npm run webpack:dev",
+    "build": "npm run pug:pro & npm run postcss:pro & npm run webpack:pro",
+    "postcss:dev": "NODE_ENV=development postcss ./src/css/*.css -c ./postcss.config.js --map ./public/css/style.css.map -w -b ./src/css -x css -d ./public/css",
+    "postcss:pro": "NODE_ENV=production postcss ./src/css/*.css -c ./postcss.config.js --no-map -b ./src/css -x css -d ./public/css",
+    "webpack:dev": "NODE_ENV=development webpack -w & webpack-dev-server",
+    "webpack:pro": "NODE_ENV=production webpack --display-used-exports",
+    "pug:dev": "pug ./src/pug -Pwo ./public",
+    "pug:pro": "pug ./src/pug -o ./public",
+    "test": "NODE_ENV=test mocha --compilers js:@babel/register --recursive $(find test -name '*.spec.js')",
+    "lint": "eslint --fix --ext .js ./src webpack.config.js"
+  },
+  "author": "kzhrk",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-syntax-object-rest-spread": "^7.2.0",
+    "@babel/preset-env": "^7.3.1",
+    "autoprefixer": "^9.4.7",
+    "babel-loader": "^8.0.5",
+    "cssnano": "^4.1.10",
+    "eslint": "^5.13.0",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "postcss-cli": "^6.1.1",
+    "prettier": "^1.16.4",
+    "pug-cli": "^1.0.0-alpha6",
+    "uglifyjs-webpack-plugin": "^2.1.1",
+    "watch": "^1.0.2",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.1.14"
+  },
+  "dependencies": {
+    "@webcomponents/webcomponentsjs": "^2.2.7"
+  }
+}
