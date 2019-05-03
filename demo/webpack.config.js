@@ -2,15 +2,16 @@ const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
+  context: __dirname,
+  
   entry: {
-    index: './src/index.js'
+    index: './src/webpack/index.js'
   },
 
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, 'js'),
     filename: '[name].js',
-    library: 'CustomPicture',
-    libraryTarget: 'umd'
+    publicPath: '/js/'
   },
 
   resolve: {
@@ -44,6 +45,11 @@ module.exports = {
             })
           ]
         : []
+  },
+
+  devServer: {
+    contentBase: path.join(__dirname, './'),
+    port: 3000
   },
 
   devtool: process.env.NODE_ENV === 'production' ? '' : 'inline-source-map',

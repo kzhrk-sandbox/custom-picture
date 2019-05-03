@@ -6,7 +6,7 @@ const canUsePicture = (() => {
   return 'srcset' in image;
 })();
 
-class CustomPicture extends HTMLElement {
+export default class CustomPicture extends HTMLElement {
   constructor() {
     super();
 
@@ -77,7 +77,3 @@ class CustomPicture extends HTMLElement {
     }
   }
 }
-
-window.addEventListener('load', () => {
-  customElements.define('x-picture', CustomPicture);
-});
